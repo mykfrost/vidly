@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //input : liked :boolean
 //Output: Onclick
 
-const Liked = (props) => {
+const Like = (props) => {
 
     let classes = 'fa fa-heart';
     if(!props.liked) classes+= '-o';
