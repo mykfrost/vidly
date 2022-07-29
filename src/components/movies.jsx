@@ -10,11 +10,16 @@ class Movies extends Component {
         // this.setState({movies : movies}); long method
 
         this.setState({movies});//short method
-        console.log(movie);
+        //console.log(movie);
     };
 
-    handleOnclick = () =>{
-        console.log('Icon Clicked');
+    handleLike = movie =>{
+        const movies = [...this.state.movies];
+       const  index =  movies.indexOf(movie);
+       movies[index] = {...movies[index]};
+        movies[index].liked = !movies[index].liked;
+        this.setState({movies});
+        
     }
    
  
@@ -47,7 +52,7 @@ class Movies extends Component {
                         <td>{movie.genre.name}</td>
                         <td>{movie.numberInStock}</td>
                         <td>{movie.dailyRentalRate}</td>
-                        <td><Like/></td>
+                        <td><Like liked={movie.liked} onClick={() => this.handleLike(movie)}/></td>
                         <td><button onClick={ () => this.handleDelete(movie)} className="btn btn-danger btn-sm">Delete</button></td>
                     </tr> ))}
                     
