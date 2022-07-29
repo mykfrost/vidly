@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getMovies } from '../services/fakeMovieService';
+import Like from './common/like';
 class Movies extends Component {
     state = { 
         movies : getMovies()
@@ -12,6 +13,9 @@ class Movies extends Component {
         console.log(movie);
     };
 
+    handleOnclick = () =>{
+        console.log('Icon Clicked');
+    }
    
  
 
@@ -33,6 +37,7 @@ class Movies extends Component {
                     <th>Stock</th>
                     <th>Rate</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,6 +47,7 @@ class Movies extends Component {
                         <td>{movie.genre.name}</td>
                         <td>{movie.numberInStock}</td>
                         <td>{movie.dailyRentalRate}</td>
+                        <td><Like/></td>
                         <td><button onClick={ () => this.handleDelete(movie)} className="btn btn-danger btn-sm">Delete</button></td>
                     </tr> ))}
                     
