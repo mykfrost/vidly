@@ -33,13 +33,15 @@ class Movies extends Component {
         movies[index].liked = !movies[index].liked;
         this.setState({movies});
         
-    }
+    };
 
     handlePageChange = page =>{
         this.setState({currentPage: page});
-    }
+    };
    
- 
+    handleGenreSelect = genre =>{
+        console.log(genre);
+    };
 
     render() { 
 
@@ -54,8 +56,13 @@ class Movies extends Component {
         return (
             <div className='row'>
 
-                <div className="col-2">
-                    <ListGroup items={this.state.genres}></ListGroup>
+                <div className="col-3">
+                    {/* Define the interfce of this component */}
+                    <ListGroup 
+                    onItemSelect={this.handleGenreSelect}
+                     items={this.state.genres}
+                     
+                     ></ListGroup>
                 </div>
                 <div className="col">
                 <p>Showing {count} movies in the database</p>
@@ -98,5 +105,5 @@ class Movies extends Component {
         
         );}
 }
- 
+
 export default Movies;

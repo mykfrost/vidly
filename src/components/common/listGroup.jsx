@@ -3,29 +3,30 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { genres, getGenres } from '../../services/fakeGenreService';
 
-class ListGroup extends Component {
-    state = { 
-       genres: getGenres(),
-       
-    };
+const ListGroup = props =>{
 
-     
- render(){
-    const {length : count} = this.state.genres;
-  
+    const {items , textProperty , valueProperty} = props;
+
+  return <ul className="list-group">
+    {items.map( item =>
+           <li  style={{cursor : 'pointer'}} 
+            key={item[valueProperty]}
+            
+            className="list-group-item">
+            {item[textProperty]}
+            </li>
+        )};
+ 
+  </ul>;
 
 
-   // const genres = paginate(allMovies , currentPage, pageSize);
-    return (
-        <nav>
-        <ul className="list-group">
-            {count.map(genre =>(
-             <li  className="list-group-item">{genre}</li>
-            ))}    
-         </ul>
-    </nav>
-          );}
 }
+
+ListGroup.defaultProps ={
+    textProperty : 'name',
+    valueProperty : '_id'
+   };
+
 export default ListGroup;
 
 
