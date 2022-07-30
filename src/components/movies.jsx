@@ -16,7 +16,7 @@ class Movies extends Component {
     };
     //rendered when rendering is done
     componentDidMount(){
-        const genres = [{name : 'All Genres'} , ...getGenres()];
+        const genres = [{_id: '' , name : 'All Genres'} , ...getGenres()];
         this.setState({movies : getMovies() , genres });
     }
     handleDelete = movie =>{
@@ -43,7 +43,9 @@ class Movies extends Component {
     handleGenreSelect = genre =>{
        this.setState({selectedGenre: genre , currentPage: 1});
     };
-
+    handleSort = path => {
+        console.log(path);
+    }
     render() { 
 
         const {length : count} = this.state.movies;
@@ -61,7 +63,7 @@ class Movies extends Component {
         <div className='row'>
        
         <div className="col-3">
-                    {/* Define the interfce of this component */}
+         {/* Define the interfce of this component */}
         <ListGroup 
                      
         onItemSelect={this.handleGenreSelect}
@@ -72,7 +74,9 @@ class Movies extends Component {
         </div>
         <div className="col">
         <p>Showing {filtered.length} movies in the database</p>
-        <MoviesTable movies={movies}
+        <MoviesTable 
+        onSort={this.handleSort}
+        movies={movies}
         onDelete={this.handleDelete}
         onLike={this.handleLike}
         ></MoviesTable>       
