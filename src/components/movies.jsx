@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getMovies } from '../services/fakeMovieService';
 import { genres, getGenres } from '../services/fakeGenreService';
+import  _  from 'lodash';
 import Pagination from './common/pagination';
 import { paginate } from '../utils/paginate';
 import ListGroup from './common/listGroup';
@@ -11,8 +12,8 @@ class Movies extends Component {
         movies : [],
         pageSize: 4 ,
         currentPage: 1,
-       genres: []
-
+        genres: [],
+        sortColumn: {path : 'title' , order: 'asc'}
     };
     //rendered when rendering is done
     componentDidMount(){
@@ -44,21 +45,26 @@ class Movies extends Component {
        this.setState({selectedGenre: genre , currentPage: 1});
     };
     handleSort = path => {
-        console.log(path);
+        // console.log(path);
+        this.setState({sortColumn : {path: path , order :'asc'} });
     }
     render() { 
 
         const {length : count} = this.state.movies;
-        const {pageSize , currentPage ,selectedGenre, movies : allMovies} = this.state;
+        const {pageSize ,sortColumn, currentPage ,selectedGenre, movies : allMovies} = this.state;
 
         if(count === 0) 
-            return <p>There are no movies in the database</p>;
+        return <p>There are no movies in the database</p>;
             //if count is not zero
         //Before pagination we need to do filtering coz pagination depends on page size from filters
         const filtered =  selectedGenre && selectedGenre._id 
         ? allMovies.filter(m => m.genre._id === selectedGenre._id)
          : allMovies;
-        const movies = paginate(filtered , currentPage, pageSize);
+         //Sorting has to be done after doing filtering.
+        //pass the filtered movies to the lodash sort array
+        const sorted = _.orderBy(filtered , [sortColumn.path] , [sortColumn.order])
+        // const movies = paginate(filtered , currentPage, pageSize);
+        const movies = paginate(sorted , currentPage, pageSize);
         return (
         <div className='row'>
        
