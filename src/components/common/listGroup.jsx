@@ -5,10 +5,11 @@ import { genres, getGenres } from '../../services/fakeGenreService';
 
 const ListGroup = props =>{
 
-    const {items , textProperty , valueProperty ,onItemSelect ,selectedItem} = props;
+    const {items , textProperty , valueProperty ,onItemSelect ,selectedItem } = props;
 
   return <ul className="list-group">
-    {items.map( item =>
+          
+            {items.map( item =>
            <li  style={{cursor : 'pointer'}} 
             key={item[valueProperty]}
             onClick={() => onItemSelect(item)}
