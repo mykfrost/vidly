@@ -40,7 +40,7 @@ class Movies extends Component {
     };
    
     handleGenreSelect = genre =>{
-        console.log(genre);
+       this.setState({selectedGenre: genre});
     };
 
     render() { 
@@ -59,7 +59,8 @@ class Movies extends Component {
                 <div className="col-3">
                     {/* Define the interfce of this component */}
                     <ListGroup 
-                    onItemSelect={this.handleGenreSelect}
+                     onItemSelect={this.handleGenreSelect}
+                     selectedItem={this.state.selectedGenre}
                      items={this.state.genres}
                      
                      ></ListGroup>
