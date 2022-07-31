@@ -44,20 +44,9 @@ class Movies extends Component {
     handleGenreSelect = genre =>{
        this.setState({selectedGenre: genre , currentPage: 1});
     };
-    handleSort = path => {
+    handleSort = sortColumn => {
         // console.log(path);
-        // Sorting in descending order
-        const sortColumn = {...this.state.sortColumn};
-        if(sortColumn.path === path)
-        sortColumn.order = (sortColumn.order === 'asc') ? 'desc' : 'asc';
-        else {
-            //sort column set to the new path
-            sortColumn.path = path ;
-            //and sort order should always be ascending whenever we sort on a new column
-            sortColumn.order = 'asc';
-        }
-        // this.setState({sortColumn : {path: path , order :'asc'} });
-        //Finally update the state based on this new sort order
+   
         this.setState({sortColumn});
     };
     render() { 
@@ -92,11 +81,12 @@ class Movies extends Component {
         </div>
         <div className="col">
         <p>Showing {filtered.length} movies in the database</p>
-        <MoviesTable 
-        onSort={this.handleSort}
-        movies={movies}
-        onDelete={this.handleDelete}
+        <MoviesTable     
+        movies={movies} 
+        sortColumn={sortColumn}      
         onLike={this.handleLike}
+        onDelete={this.handleDelete}
+        onSort={this.handleSort}
         ></MoviesTable>       
         {/* <Pagination itemsCount={this.state.movies.length}/> */}
         <Pagination 
