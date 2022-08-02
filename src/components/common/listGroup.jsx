@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { genres, getGenres } from '../../services/fakeGenreService';
 
-const ListGroup = props =>{
+const ListGroup = ({items , textProperty , valueProperty ,onItemSelect ,selectedItem }) =>{
 
-    const {items , textProperty , valueProperty ,onItemSelect ,selectedItem } = props;
+    //const  = props;
 
   return <ul className="list-group">
           
