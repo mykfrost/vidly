@@ -1,30 +1,25 @@
-import { times } from 'lodash';
 import React, { Component } from 'react';
 import Like from './common/like';
+import TableHeader from './common/tableHeader';
 
 
 class MoviesTable extends Component {
-    raiseSort = path => {
-             // Sorting in descending order
-             const sortColumn = {...this.props.sortColumn};
-             if(sortColumn.path === path)
-             sortColumn.order = (sortColumn.order === 'asc') ? 'desc' : 'asc';
-             else {
-                 //sort column set to the new path
-                 sortColumn.path = path ;
-                 //and sort order should always be ascending whenever we sort on a new column
-                 sortColumn.order = 'asc';
-             }
-             // this.setState({sortColumn : {path: path , order :'asc'} });
-             //Finally update the state based on this new sort order
-             //Raise the sort event 
-             this.props.onSort(sortColumn);
-    };
+        columns =[
+            {path : 'title', label : 'Title'},
+            {path : 'genre.name', label : 'Genre'},
+            {path : 'numberInStock', label : 'Stock'},
+            {path : 'DailyRentalRate', label : 'Rate'},
+            {key : 'like'},
+            {key :'delete'}
+        ]
     render() { 
-        const {movies , onDelete , onLike} = this.props;
+        const {movies , onDelete , onLike ,onSort,sortColumn} = this.props;
         return (          
             <table className="table">
-                        <thead>
+                        <TableHeader columns={this.columns} 
+                        sortColumn={sortColumn}
+                        onSort={onSort}
+                        >
                             <tr>
                                 <th style={{cursor : 'pointer'}}  onClick={ () => this.raiseSort('title')}>Title</th>
                                 <th style={{cursor : 'pointer'}}  onClick={ () => this.raiseSort('genre.name') }>Genre</th>
@@ -33,7 +28,7 @@ class MoviesTable extends Component {
                                 <th ></th>
                                 <th></th>
                             </tr>
-                        </thead>
+                        </TableHeader>
                             <tbody>
                                 {movies.map(movie => (
                                     <tr key={movie._id}>
