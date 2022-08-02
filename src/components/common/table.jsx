@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import TableBody from './common/tableBody';
-import TableHeader from './common/tableHeader';
-const Table = () => {
+import TableBody from './tableBody';
+import TableHeader from './tableHeader';
+const Table = (props) => {
     const {columns , sortColumn , onSort , data} = props;
     return (  
         <table className="table">
         <TableHeader 
             columns={columns} 
-            ortColumn={sortColumn}
+            sortColumn={sortColumn}
             onSort={onSort} />
                        
         <TableBody
