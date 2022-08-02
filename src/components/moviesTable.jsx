@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Like from './common/like';
+import TableBody from './common/tableBody';
 import TableHeader from './common/tableHeader';
 
 
@@ -9,27 +10,29 @@ class MoviesTable extends Component {
             {path : 'genre.name', label : 'Genre'},
             {path : 'numberInStock', label : 'Stock'},
             {path : 'DailyRentalRate', label : 'Rate'},
-            {key : 'like'},
-            {key :'delete'}
+            {
+                key : 'like',
+                content: <Like liked={movie.liked} onClick={ () => onLike(movie)}/>},
+            {key :'delete',
+           content : <button onClick={ () =>  onDelete(movie)} className="btn btn-danger btn-sm">Delete</button> }
         ]
     render() { 
         const {movies , onDelete , onLike ,onSort,sortColumn} = this.props;
         return (          
             <table className="table">
-                        <TableHeader columns={this.columns} 
+                        <TableHeader 
+                        columns={this.columns} 
                         sortColumn={sortColumn}
                         onSort={onSort}
                         >
-                            <tr>
-                                <th style={{cursor : 'pointer'}}  onClick={ () => this.raiseSort('title')}>Title</th>
-                                <th style={{cursor : 'pointer'}}  onClick={ () => this.raiseSort('genre.name') }>Genre</th>
-                                <th style={{cursor : 'pointer'}}  onClick={ () => this.raiseSort('numberInStock') } >Stock</th>
-                                <th style={{cursor : 'pointer'}} onClick={ () => this.raiseSort('dailyRentalRate') }>Rate</th>
-                                <th ></th>
-                                <th></th>
-                            </tr>
                         </TableHeader>
-                            <tbody>
+                        <TableBody
+                        columns={this.columns}
+                        data ={movies}
+                        >
+
+                        </TableBody>
+                            {/* <tbody>
                                 {movies.map(movie => (
                                     <tr key={movie._id}>
                                     <td>{movie.title}</td>
@@ -40,7 +43,7 @@ class MoviesTable extends Component {
                                     <td><button onClick={ () =>  onDelete(movie)} className="btn btn-danger btn-sm">Delete</button></td>
                                    </tr> ))}
                                 
-                            </tbody>
+                            </tbody> */}
                        
             </table>       
         );
