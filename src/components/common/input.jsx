@@ -7,12 +7,12 @@ const Input = ({name ,label, value,onChange}) => {
                 value={value}
                 name={name} 
                 onChange={onChange}
-                id="username" 
+                id={name} 
                 type="text"
                 className="form-control" />
                 </div>               
 
     );
-}
+};
  
 export default Input;

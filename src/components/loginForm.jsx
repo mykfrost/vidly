@@ -9,14 +9,18 @@ class LoginForm extends Component {
 
    validate = () =>{
     // return {username : 'Username is required.'};
-    const errors = {};
-    if(this.state.account.username.trim() === '')
-        errors.username = 'Username is Required!.'
+    const {account} = this.state;
+    if(account.username.trim() === '')
+        errors.username = 'Username is Required!.';
+    if(account.password.trim() === '')
+        errors.password = 'Password is Required!.';
+        return Object.keys(errors).length === 0 ? null : errors;
    };
 
     handleSubmit = e => {
         e.preventDefault();
        const errors = this.validate();
+       console.log(errors);
        this.setState({errors});
        if(errors) return ;//return immeditely so we do not call the server
         //call the server, save changes & redirect user
@@ -39,11 +43,13 @@ handleChange = ({currentTarget : input}) =>{
                     <Input name="username" 
                     value={account.username}
                     label="Username"
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange}
+                    />
                   <Input name="password" 
                     value={account.password}
                     label="Password"
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange}
+                    />
                     <button className="btn btn-primary">Login</button>
                 </form>
             </div>
