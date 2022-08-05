@@ -21,7 +21,7 @@ class MoviesTable extends Component {
             },
 
             {
-            path : 'DailyRentalRate', label : 'Rate'},
+            path : 'dailyRentalRate', label : 'Rate'},
             {
                 key : 'like',
                 content: movie => ( <Like liked={movie.liked} onClick={ () => this.props.onLike(movie)}/> 
