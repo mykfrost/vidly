@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import Input from './common/input';
 
 class LoginForm extends Component {
    state = {
-    account : { username : '', password: ''} 
-
+    account : { username : '', password: ''} ,
+    errors : {}
    };
 
     handleSubmit = e => {
         e.preventDefault();
+       const errors = this.validate();
+       this.setState({errors})
         //call the server, save changes & redirect user
              // const password =  this.password.current.value;
          console.log('Submitted');
@@ -25,26 +28,14 @@ handleChange = ({currentTarget : input}) =>{
             <div>
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input autoFocus 
+                    <Input name="username" 
                     value={account.username}
-                    name="username" 
-                    onChange={this.handleChange}
-                    id="username" 
-                    type="text"
-                    className="form-control" />
-                    </div>
-                    <div className="form-group">
-                    <label htmlFor="password">Password </label>
-                    <input
-                    onChange={this.handleChange}
+                    label="Username"
+                    onChange={this.handleChange}/>
+                  <Input name="password" 
                     value={account.password}
-                    name="password"  
-                    id="password"
-                     type="text" 
-                    className="form-control" />
-                    </div>
+                    label="Password"
+                    onChange={this.handleChange}/>
                     <button className="btn btn-primary">Login</button>
                 </form>
             </div>
