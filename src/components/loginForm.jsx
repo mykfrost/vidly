@@ -27,29 +27,13 @@ class LoginForm extends Component {
     for(let item of error.details)
      errors[item.path[0]] = item.message;
     return errors;
-    // const errors = {};
-    // const {account}  = this.state;
-    // if(account.username.trim() === '')
-    //     errors.username = 'Username is Required!';
-    //      if(account.password.trim() === '')
-    //     errors.password = 'Password is Required!';
-    //     return Object.keys(errors).length === 0 ? null : errors;
+    
    };
      validateProperty = ({name, value}) =>{
-        const obj = {[name] : value};
-        const schema = {[name]:this.schema[name]}
-      const {error}=  Joi.validate(obj ,schema);
-      if(error) return null;
-     return error ? error.details[0].message : null;
-     
-     // return error.details[0].message;
-
-    // if(name === "username"){
-    //     if(value.trim() === "") return "Username is Required";
-    // }
-    //  if(name === "password"){
-    //     if(value.trim() === "") return "Password is Required";
-    
+     const obj = {[name] : value};
+     const schema = {[name]:this.schema[name]}
+     const {error}=  Joi.validate(obj ,schema);
+    return error ? error.details[0].message : null;   
     
    };
 
@@ -60,8 +44,7 @@ class LoginForm extends Component {
        this.setState({errors: errors || {} });
        if(errors) return ;//return immeditely so we do not call the server
         //call the server, save changes & redirect user
-             // const password =  this.password.current.value;
-         console.log("Submitted Login");
+        // const password =  this.password.current.value;
     };
 
     handleChange = ({currentTarget : input}) =>{
@@ -103,7 +86,7 @@ class LoginForm extends Component {
                     error={errors.password}
                     className="form-control"
                     />
-                    <button className="btn btn-primary">Login</button>
+                    <button disabled={this.validate()} className="btn btn-primary">Login</button>
                 </form>
             </div>
         );
