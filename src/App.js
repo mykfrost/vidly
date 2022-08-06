@@ -1,8 +1,8 @@
 import { Route, Switch ,Redirect } from 'react-router-dom';
-import React,{Component } from 'react';
-import {getMovies} from '../src/services/fakeMovieService';
+import React from 'react';
 import Movies from './components/movies';
 import LoginForm from './components/loginForm';
+import RegisterForm from './components/registerForm';
 import MovieForm from './components/movieForm';
 import Rentals from './components/rentals';
 import NotFound from './components/notFound';
@@ -10,14 +10,16 @@ import Customers from './components/customers';
 import NavBar from './components/navBar';
 import './App.css';
 
+
 function App() {
   return (
   <React.Fragment>
     <NavBar/>
    <main className='container'>
         <Switch>
-        <Route path="/login" component={LoginForm} />
-        <Route path="/movies/:id" component={MovieForm} />
+        <Route path="/register" component={RegisterForm} ></Route>
+        <Route path="/login" component={LoginForm} ></Route>
+        <Route path="/movies/:id" component={MovieForm} ></Route>
         <Route path="/movies" component={Movies} ></Route>
         <Route  path="/customers" component={Customers}></Route>
         <Route  path="/rentals" component={Rentals}></Route>

@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
-import { genres, getGenres } from '../../services/fakeGenreService';
+import React from 'react';
 
 const ListGroup = ({items , textProperty , valueProperty ,onItemSelect ,selectedItem }) =>{
 
@@ -18,7 +15,7 @@ const ListGroup = ({items , textProperty , valueProperty ,onItemSelect ,selected
             </li>
         )};
  
-  </ul>;
+       </ul>;
 
 
 }

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink ,Link } from 'react-router-dom';
 
 const  NavBar = () => {
     return ( 
 
-        <nav className="navbar navbar-expand-lg bg-light">
+  <nav className="navbar navbar-expand-lg bg-light">
   <div className="container-fluid">
 
     <Link className="navbar-brand" to="/movies">Vidly</Link>
@@ -24,6 +24,9 @@ const  NavBar = () => {
         </li>
         <li className="nav-item">
           <NavLink className="nav-link " to="/login">Login</NavLink >
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link " to="/resister">Register</NavLink >
         </li>
       </ul>
     </div>

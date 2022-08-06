@@ -31,7 +31,7 @@ class Form extends Component {
     handleSubmit = e => {
     e.preventDefault();
     const errors = this.validate();
-    console.log("Errors",errors);
+   
     this.setState({errors: errors || {} });
     if(errors) return ;//return immeditely so we do not call the server
     this.doSubmit();
@@ -58,13 +58,8 @@ class Form extends Component {
         const {data , errors} = this.state;
 
     return (
-        <Input
-        type={type}
-       name={name} 
-       value={data[name]}
-       label={label}
-       onChange={this.handleChange}
-       error={errors[name]} />
+        <Input type={type} name={name} value={data[name]}  label={label} onChange={this.handleChange} error={errors[name]} > 
+       </Input>
     );           
     };
 }

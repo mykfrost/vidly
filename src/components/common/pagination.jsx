@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -27,7 +27,7 @@ const Pagination = ({itemsCount ,onPageChange,currentPage, pageSize}) => {
 
 //After we define pagination , we add typechecking properties to it
  
-Pagination.ropTypes = {
+Pagination.propTypes = {
     itemsCount: PropTypes.number.isRequired ,
     onPageChange: PropTypes.func.isRequired,
     currentPage : PropTypes.number.isRequired,
