@@ -1,8 +1,9 @@
 import React , {Component}from 'react';
-import { Joi } from 'joi-browser';
+import  Joi  from 'joi-browser';
 import Input from './common/input';
 
 class LoginForm extends Component {
+    
    state = {
     account : { username : '', password: ''} ,
     errors : {}
@@ -16,13 +17,15 @@ class LoginForm extends Component {
    };
 
    validate = () =>{
+    
     const options ={abortEarly : false};
    const {error}= Joi.validate(this.state.account , this.schema ,options);
-    
+ 
     if(!error) return null;
     const errors = {};
 
-    for(let item of error.details) errors[item.path[0]] = item.message;
+    for(let item of error.details)
+     errors[item.path[0]] = item.message;
     return errors;
     // const errors = {};
     // const {account}  = this.state;
