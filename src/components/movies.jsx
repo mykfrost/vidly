@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getMovies } from '../services/fakeMovieService';
-import {  getGenres } from '../services/fakeGenreService';
+import {  getGenres } from '../services/genreService';
 import  _  from 'lodash';
 import Pagination from './common/pagination';
 import { paginate } from '../utils/paginate';
@@ -21,6 +21,7 @@ class Movies extends Component {
     };
     //rendered when rendering is done
     componentDidMount(){
+        await re
         const genres = [{_id: '' , name : 'All Genres'} , ...getGenres()];
         this.setState({movies : getMovies() , genres });
     }
