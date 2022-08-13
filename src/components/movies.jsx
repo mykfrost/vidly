@@ -20,9 +20,9 @@ class Movies extends Component {
         sortColumn: {path : 'title' , order: 'asc'}
     };
     //rendered when rendering is done
-    componentDidMount(){
-        await re
-        const genres = [{_id: '' , name : 'All Genres'} , ...getGenres()];
+    async componentDidMount(){
+        const {data} = await getGenres();
+        const genres = [{_id: '' , name : 'All Genres'} , ...data];
         this.setState({movies : getMovies() , genres });
     }
     handleDelete = movie =>{
