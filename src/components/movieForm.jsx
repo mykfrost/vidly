@@ -31,11 +31,17 @@ class MovieForm extends Form {
                 numberInStock: Joi.number().required().min(0).max(100).label("Number in Stock"),
                 dailyRentalRate: Joi.number().required().min(0).max(10).label("Daily Rental Rate")
          };
-         async componentDidMount(){
-                const {data : genres }= await getGenres();
-                this.setState({genres});
-                const movieId = this.props.match.params.id;
-                if(movieId === "new") return;
+
+         async   populateGenres(){
+        const {data : genres }= await getGenres();
+        this.setState({genres});   
+         }
+
+       async  populateMovies(){
+
+        const movieId = this.props.match.params.id;
+         if(movieId === "new") return;
+         
                 try{
                 const {data :movie} = await getMovie(movieId);
                 this.setState({data : this.mapToViewModel(movie)});
@@ -43,7 +49,12 @@ class MovieForm extends Form {
                 catch (ex){
                   if(ex.response && ex.response.status === 404) 
                    this.props.history.replace("/not-found");
-                }          
+                }
+         }
+         async componentDidMount(){
+        await  this.populateGenres();
+        await this.populateMovies();
+          
          };
 
          mapToViewModel(movie){
