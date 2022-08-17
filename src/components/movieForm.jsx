@@ -32,9 +32,10 @@ class MovieForm extends Form {
                 dailyRentalRate: Joi.number().required().min(0).max(10).label("Daily Rental Rate")
          };
 
+        
          async   populateGenres(){
-        const {data : genres }= await getGenres();
-        this.setState({genres});   
+                const {data : genres }= await getGenres();
+                this.setState({genres});   
          }
 
        async  populateMovies(){
@@ -59,17 +60,17 @@ class MovieForm extends Form {
 
          mapToViewModel(movie){
                 return{
-                        _id: movie._id,
-                        title : movie.title,
-                        genreId: movie.genre._id,
-                        numberInStock: movie.numberInStock,
-                        dailyRentalRate: movie.dailyRentalRate
+                 _id: movie._id,
+                title : movie.title,
+                genreId: movie.genre._id,
+                numberInStock: movie.numberInStock,
+                dailyRentalRate: movie.dailyRentalRate
                 };
          };
 
-         doSubmit =()=>{
-                saveMovie(this.state.data);
-                this.props.history.push("/movies");
+         doSubmit =  async ()=>{
+        await saveMovie(this.state.data);
+        this.props.history.push("/movies");
          };
         render() { 
                 return (
